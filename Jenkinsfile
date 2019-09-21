@@ -43,14 +43,15 @@ node {
 }
 
 //parallel integration testing
-stage 'Browser Testing'
-parallel chrome: {
-    runTests("Chrome")
-}, firefox: {
-    runTests("Firefox")
-}, safari: {
-    runTests("Safari")
-}
+
+//stage 'Browser Testing'
+//parallel chrome: {
+//    runTests("Chrome")
+//}, firefox: {
+//    runTests("Firefox")
+//}, safari: {
+//    runTests("Safari")
+//}
 
 def runTests(browser) {
     node {
