@@ -1,5 +1,5 @@
 stage 'CI'
-node {
+node ('master'){
 
     checkout scm
 
@@ -29,7 +29,7 @@ node {
 
 // demoing a second agent
 //node('mac') {
-node {
+node ('master'){
     // on windows use: bat 'dir'
     sh 'ls'
 
@@ -54,7 +54,7 @@ node {
 //}
 
 def runTests(browser) {
-    node {
+    node ('master'){
         // on windows use: bat 'del /S /Q *'
         sh 'rm -rf *'
 
@@ -68,7 +68,7 @@ def runTests(browser) {
     }
 }
 
-node {
+node ('master'){
     notify("Deploy to staging?")
 }
 
@@ -78,7 +78,7 @@ input 'Deploy to staging?'
 // and if multiple pipelines are executing, 
 // newest is only that will be allowed through, rest will be canceled
 stage name: 'Deploy to staging', concurrency: 1
-node {
+node ('master'){
     // write build number to index page so we can see this update
     // on windows use: bat "echo '<h1>${env.BUILD_DISPLAY_NAME}</h1>' >> app/index.html"
     sh "echo '<h1>${env.BUILD_DISPLAY_NAME}</h1>' >> app/index.html"
